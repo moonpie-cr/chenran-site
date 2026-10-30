@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>陈冉 · 社区活动运营 | 个人网站</title>
+<meta name="description" content="陈冉的个人网站：奇绩创坛 Community Event 团队成员，专注创业社区大型活动统筹与执行。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2317675F'/%3E%3Ccircle cx='11' cy='11' r='3' fill='%23FBFBF7'/%3E%3Ccircle cx='21' cy='11' r='3' fill='%23FBFBF7'/%3E%3Ccircle cx='11' cy='21' r='3' fill='%23FBFBF7'/%3E%3Ccircle cx='21' cy='21' r='3' fill='%23FBFBF7'/%3E%3C/svg%3E">
+<style>
+/* ===== 设计令牌 ===== */
+:root{
+  --bg:#FBFBF7;
+  --surface:#FFFFFF;
+  --ink:#22302B;
+  --ink-soft:#3D4B45;
+  --muted:#6C7873;
+  --line:#E3E8E4;
+  --primary:#17675F;
+  --primary-deep:#0F4B45;
+  --primary-soft:#EAF2EF;
+  --accent:#E0783C;
+  --radius:14px;
+  --maxw:1080px;
+  --font-sans:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Source Han Sans SC",sans-serif;
+  --font-serif:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.75;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* ===== 顶部导航 ===== */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(251,251,247,.88);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-brand{font-weight:700;font-size:17px;letter-spacing:.5px}
+.nav-brand em{font-style:normal;color:var(--primary)}
+.nav-links{display:flex;gap:26px}
+.nav-links a{font-size:14.5px;color:var(--ink-soft);transition:color .2s}
+.nav-links a:hover{color:var(--primary)}
+
+/* ===== Hero ===== */
+.hero{padding:84px 0 64px}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;letter-spacing:1.5px;color:var(--primary);
+  background:var(--primary-soft);border-radius:999px;
+  padding:6px 14px;margin-bottom:26px;
+}
+.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.hero h1{
+  font-family:var(--font-serif);
+  font-size:clamp(44px,8vw,72px);
+  font-weight:600;letter-spacing:4px;
+  line-height:1.15;color:var(--ink);
+}
+.hero-sub{
+  margin-top:14px;font-size:clamp(18px,2.6vw,22px);
+  color:var(--ink-soft);font-weight:500;
+}
+.hero-desc{
+  margin-top:22px;max-width:640px;color:var(--muted);font-size:16px;
+}
+.hero-stats{
+  margin-top:44px;display:grid;
+  grid-template-columns:repeat(2,1fr);gap:1px;
+  background:var(--line);border:1px solid var(--line);
+  border-radius:var(--radius);overflow:hidden;
+}
+.stat{background:var(--surface);padding:20px 24px}
+.stat b{display:block;font-size:28px;font-weight:700;color:var(--primary);line-height:1.2;font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:4px;font-size:13.5px;color:var(--muted)}
+
+/* ===== 区块通用 ===== */
+section{padding:64px 0}
+.section-head{margin-bottom:38px;max-width:760px}
+.section-kicker{
+  font-size:13px;letter-spacing:2px;color:var(--accent);
+  font-weight:600;margin-bottom:10px;
+}
+.section-head h2{
+  font-family:var(--font-serif);
+  font-size:clamp(26px,4vw,34px);font-weight:600;letter-spacing:1px;
+}
+.section-head p{margin-top:12px;color:var(--muted);font-size:15.5px}
+
+/* ===== 关于 ===== */
+.about-grid{display:grid;grid-template-columns:1fr;gap:28px}
+.about-text p{color:var(--ink-soft);font-size:16px;max-width:760px}
+.about-text p + p{margin-top:14px}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.tag{
+  font-size:13.5px;color:var(--ink-soft);
+  border:1px solid var(--line);background:var(--surface);
+  border-radius:999px;padding:6px 14px;
+}
+
+/* ===== 核心成果 ===== */
+.cards{display:grid;grid-template-columns:1fr;gap:16px}
+.card{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:26px 26px 24px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.card-top{display:flex;align-items:flex-start;gap:14px}
+.card-ico{
+  flex:0 0 auto;width:42px;height:42px;border-radius:11px;
+  background:var(--primary-soft);display:flex;align-items:center;justify-content:center;
+}
+.card-ico svg{width:22px;height:22px;stroke:var(--primary)}
+.card h3{font-size:18px;font-weight:600;color:var(--ink);line-height:1.4}
+.card .role{
+  font-size:12.5px;letter-spacing:1px;color:var(--accent);
+  font-weight:600;margin-top:3px;
+}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.card li{
+  position:relative;padding-left:16px;color:var(--ink-soft);
+  font-size:14.5px;line-height:1.7;
+}
+.card li::before{
+  content:"";position:absolute;left:0;top:11px;
+  width:6px;height:6px;border-radius:50%;background:var(--primary);
+}
+
+/* ===== 时间轴 ===== */
+.timeline{--date:0px;--axis:14px;position:relative}
+.timeline::before{
+  content:"";position:absolute;
+  left:calc(var(--date) + var(--axis)/2 - .75px);
+  top:10px;bottom:22px;width:1.5px;background:var(--line);
+}
+.tl-item{
+  display:grid;grid-template-columns:14px 1fr;
+  column-gap:14px;padding-bottom:34px;position:relative;
+}
+.tl-dot{
+  grid-column:1;justify-self:center;margin-top:7px;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--surface);border:2.5px solid var(--primary);
+  box-sizing:border-box;
+}
+.tl-date{grid-column:2;font-size:13px;font-weight:600;letter-spacing:1px;color:var(--accent);line-height:1.5}
+.tl-body{grid-column:2}
+.tl-title{font-size:16.5px;font-weight:600;color:var(--ink);margin-top:4px}
+.tl-meta{font-size:13px;color:var(--muted);margin-top:2px}
+.tl-desc{margin-top:8px;font-size:14.5px;color:var(--ink-soft);max-width:720px}
+
+/* ===== 能力 ===== */
+.skills{display:grid;grid-template-columns:1fr;gap:14px}
+.skill{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:20px 22px;
+}
+.skill-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.skill-name{font-size:15.5px;font-weight:600;color:var(--ink)}
+.skill-note{font-size:13px;color:var(--muted);text-align:right;max-width:55%}
+.skill-bar{margin-top:12px;height:6px;border-radius:999px;background:#EEF1EE;overflow:hidden}
+.skill-bar i{display:block;height:100%;border-radius:999px;background:var(--primary)}
+.tools-note{margin-top:26px;font-size:14px;color:var(--muted)}
+.tools-note b{color:var(--ink-soft);font-weight:600}
+
+/* ===== 页脚 ===== */
+.footer{border-top:1px solid var(--line);padding:44px 0 56px;background:var(--surface)}
+.footer-inner{display:flex;flex-direction:column;gap:18px}
+.footer h3{font-family:var(--font-serif);font-size:22px;font-weight:600;letter-spacing:1px}
+.footer .contact{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.footer .contact a{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:14.5px;color:var(--primary);
+  border:1px solid var(--primary);border-radius:999px;
+  padding:8px 18px;transition:all .2s;
+}
+.footer .contact a:hover{background:var(--primary);color:#fff}
+.footer .foot-note{font-size:13px;color:var(--muted)}
+
+/* ===== 响应式：≥768px ===== */
+@media (min-width:768px){
+  .hero-stats{grid-template-columns:repeat(4,1fr)}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr}
+  .skills{grid-template-columns:repeat(2,1fr)}
+  .timeline{--date:150px;--axis:30px}
+  .tl-item{grid-template-columns:var(--date) var(--axis) 1fr;column-gap:0}
+  .tl-date{grid-column:1;padding-top:2px}
+  .tl-dot{grid-column:2;margin-top:7px}
+  .tl-body{grid-column:3;padding-left:28px}
+  .footer-inner{flex-direction:row;align-items:flex-start;justify-content:space-between}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container nav">
+    <div class="nav-brand">陈冉<em> ·</em> 个人网站</div>
+    <nav class="nav-links" aria-label="页面导航">
+      <a href="#about">关于</a>
+      <a href="#work">成果</a>
+      <a href="#timeline">时间线</a>
+      <a href="#skills">能力</a>
+      <a href="#contact">联系</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-eyebrow"><span class="dot"></span>奇绩创坛 MiraclePlus · Community Event</div>
+      <h1>陈冉</h1>
+      <p class="hero-sub">社区活动运营 · 大型活动统筹与执行</p>
+      <p class="hero-desc">专注创业社区活动的全流程落地：从项目统筹、物料与预算管理，到供应商对接、现场总控与复盘沉淀。近期负责 F26 创业营开营总负责人、三地联动季度分享中控与全场协调，并推动社区内容与校友运营项目落地。</p>
+      <div class="hero-stats">
+        <div class="stat"><b>50+</b><span>入营项目统筹（F26 开营）</span></div>
+        <div class="stat"><b>240+</b><span>三地联动单场参与人次</span></div>
+        <div class="stat"><b>10+</b><span>工作组拉通与现场协调</span></div>
+        <div class="stat"><b>4+</b><span>大型活动落地执行</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 关于 ===== -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">ABOUT</div>
+        <h2>关于我</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>我目前在奇绩创坛（MiraclePlus）Community Event 团队，负责创业社区大型活动的统筹与执行。2026 年下半年，先后担任 F26 创业营开营仪式总负责人与现场总控，参与三地联动的季度分享活动并负责中控与全场协调，同时推进社区 Weekly Digest、校友信息库（DB）与校友礼物方案等项目的落地。</p>
+          <p>我的工作方法强调「两条线并行」：确保活动顺利展开是第一条线，把流程沉淀成 SOP、让下一次更简洁更清楚是第二条线。每场活动都留下可供交接的文档与分工，让团队经验持续积累。</p>
+          <div class="tags">
+            <span class="tag">活动统筹与现场执行</span>
+            <span class="tag">项目管理</span>
+            <span class="tag">物料与预算审批</span>
+            <span class="tag">供应商对接</span>
+            <span class="tag">社群运营</span>
+            <span class="tag">多城市活动协作</span>
+            <span class="tag">SOP 沉淀</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 核心成果 ===== -->
+  <section id="work">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">HIGHLIGHTS</div>
+        <h2>近期核心成果</h2>
+        <p>2026 年 9–10 月期间，围绕创业营开营、三地联动分享与社区增长项目，交付了以下主要工作成果。</p>
+      </div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-top">
+            <div class="card-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <div>
+              <h3>F26 创业营开营 · 总负责人</h3>
+              <div class="role">2026.09 · 总控 / 物料 / 复盘</div>
+            </div>
+          </div>
+          <ul>
+            <li>作为开营总负责人拉通 10 余人工作组，统筹 50+ 入营项目、300 人规模场地的全流程落地</li>
+            <li>负责物料全流程（校友服、校友牌、Bingo 卡、海报、Bonjour 贴纸等）与预算审批，对接用餐、搭建等供应商</li>
+            <li>组织两次全流程彩排，牵头开营复盘，沉淀《F26 开营负责人 SOP》与时间线文档</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="card-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <h3>季度分享 · 三地联动</h3>
+              <div class="role">2026.10.15 · 中控 / 全场协调</div>
+            </div>
+          </div>
+          <ul>
+            <li>北京主会场 + 上海、深圳分会场同步举办，累计约 240 人，为历史参与人数最高的季度分享</li>
+            <li>负责中控设备测试、投屏与翻页笔调试；主负责人缺席时代理全场跨组协调</li>
+            <li>活动后负责网络舆情监控，保障分享内容不外泄，并参与复盘与 SOP 更新</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="card-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            </div>
+            <div>
+              <h3>社区 Weekly Digest &amp; 校友信息库</h3>
+              <div class="role">2026.10 · 社群运营 / 项目推进</div>
+            </div>
+          </div>
+          <ul>
+            <li>规划第一期 Weekly Digest 发布与订阅意愿收集，搭建发布节奏与流程</li>
+            <li>建立小范围共建群，推进校友社群运营，完成 70 位校友体验校验的拉群与跟进</li>
+            <li>结合 DB 体验群运营与问卷反馈，为校友信息产品迭代提供依据</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="card-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+            </div>
+            <div>
+              <h3>校友礼物方案 &amp; 未来之星</h3>
+              <div class="role">2026.10 · 方案设计与执行</div>
+            </div>
+          </div>
+          <ul>
+            <li>完成 50 人校友礼物方案（100–200 元/人）与定制供应商调研</li>
+            <li>支持未来之星系列活动：用餐统计与订餐、颁奖信息收集问卷、合同跟进</li>
+            <li>对接供应商合同整理与开营结算审批，保障财务流程闭环</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 时间线 ===== -->
+  <section id="timeline">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">TIMELINE</div>
+        <h2>项目时间线</h2>
+        <p>近三个月的主要工作节点：从开营筹备到三地联动分享，再到社区项目与路演日筹备。</p>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-date">2026.08.31</div>
+          <div class="tl-body">
+            <div class="tl-title">F26 开营筹备启动</div>
+            <div class="tl-meta">角色：开营总负责人</div>
+            <p class="tl-desc">承担全流程项目管理，拉通 10 余人工作组，统筹物料、签到、指引、场务等全部筹备事项。</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-date">2026.09.08–09</div>
+          <div class="tl-body">
+            <div class="tl-title">两次全流程彩排</div>
+            <div class="tl-meta">角色：总控 / 物料</div>
+            <p class="tl-desc">组织开营前两次彩排，完成分工核对、设备调试、物料清点与全流程走场。</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-date">2026.09.10–11</div>
+          <div class="tl-body">
+            <div class="tl-title">F26 开营仪式落地</div>
+            <div class="tl-meta">50+ 项目 · 300 人场地 · 两天日程</div>
+            <p class="tl-desc">担任现场总控与物料负责人，保障开营仪式、公开课、GOH、嘉宾分享、圆桌与聚餐等环节顺利推进。</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-date">2026.09.15</div>
+          <div class="tl-body">
+            <div class="tl-title">开营复盘与 SOP 沉淀</div>
+            <div class="tl-meta">角色：复盘牵头人</div>
+            <p class="tl-desc">牵头组织各组复盘，汇总问题与改进建议，沉淀《F26 开营负责人 SOP》供下一届复用。</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-date">2026.10.08–14</div>
+          <div class="tl-body">
+            <div class="tl-title">季度分享筹备衔接</div>
+            <div class="tl-meta">三地：北京 · 上海 · 深圳</div>
+            <p class="tl-desc">负责筹备文档衔接、问卷 check、分工安排与进群确认，参与三地设备测试。</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-date">2026.10.15</div>
+          <div class="tl-body">
+            <div class="tl-title">季度分享举办 · 内部产品日协同</div>
+            <div class="tl-meta">约 240 人 · 北京主会场 + 上海/深圳分会场</div>
+            <p class="tl-desc">负责中控设备与投屏、翻页笔测试；主负责人缺席时代理全场协调；同步支持内部产品日场地协同。</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-date">2026.10.16–20</div>
+          <div class="tl-body">
+            <div class="tl-title">社区 Digest / DB 推进 · 季度分享复盘</div>
+            <div class="tl-meta">新项目从 0 到 1</div>
+            <p class="tl-desc">推进 DB4.0 与 Weekly Digest 发布规划，收集订阅意愿，建立共建群；参与季度分享复盘与 SOP 更新。</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-date">2026.10.22–29</div>
+          <div class="tl-body">
+            <div class="tl-title">供应商结算 · 校友礼物 · 未来之星</div>
+            <div class="tl-meta">合同与审批闭环</div>
+            <p class="tl-desc">完成开营供应商合同整理与结算审批；交付 50 人校友礼物方案；支持未来之星用餐统计与颁奖问卷。</p>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <span class="tl-dot" aria-hidden="true"></span>
+          <div class="tl-date">2026.12.06</div>
+          <div class="tl-body">
+            <div class="tl-title">F26 秋季路演日（筹备中）</div>
+            <div class="tl-meta">校友日 · 校友颁奖 · 舞台组</div>
+            <p class="tl-desc">参与路演日校友日、颁奖环节与舞台组筹备，推进开营决算等前置工作。</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 能力 ===== -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">SKILLS</div>
+        <h2>能力与专长</h2>
+      </div>
+      <div class="skills">
+        <div class="skill">
+          <div class="skill-top"><div class="skill-name">活动统筹与现场执行</div><div class="skill-note">大型活动全流程落地</div></div>
+          <div class="skill-bar"><i style="width:95%"></i></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top"><div class="skill-name">项目管理与流程设计</div><div class="skill-note">分工 · 时间线 · 彩排</div></div>
+          <div class="skill-bar"><i style="width:92%"></i></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top"><div class="skill-name">物料与预算审批</div><div class="skill-note">清点 · 采购 · 决算</div></div>
+          <div class="skill-bar"><i style="width:90%"></i></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top"><div class="skill-name">供应商与合同对接</div><div class="skill-note">结算 · 审批闭环</div></div>
+          <div class="skill-bar"><i style="width:88%"></i></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top"><div class="skill-name">社群运营与内容</div><div class="skill-note">Digest · 共建群</div></div>
+          <div class="skill-bar"><i style="width:86%"></i></div>
+        </div>
+        <div class="skill">
+          <div class="skill-top"><div class="skill-name">多城市活动协作</div><div class="skill-note">三地联动 · 舆情监控</div></div>
+          <div class="skill-bar"><i style="width:85%"></i></div>
+        </div>
+      </div>
+      <p class="tools-note"><b>常用工具：</b>飞书（文档 / 多维表格 / 日历）、小北（AI 工具）、Canva 与 AI 工具辅助物料设计等。</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer" id="contact">
+  <div class="container footer-inner">
+    <div>
+      <h3>陈冉</h3>
+      <p style="color:var(--muted);font-size:14px;margin-top:6px">奇绩创坛 MiraclePlus · Community Event<br>社区活动运营 · 大型活动统筹与执行</p>
+    </div>
+    <div>
+      <div class="contact">
+        <a href="mailto:chenran@mail.miracleplus.com">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+          chenran@mail.miracleplus.com
+        </a>
+      </div>
+      <p class="foot-note" style="margin-top:16px">© <span id="year">2026</span> 陈冉 · 个人网站</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

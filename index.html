@@ -25,6 +25,7 @@
   --font-serif:"Noto Serif SC","Songti SC","STSong","SimSun",serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none !important}
 html{scroll-behavior:smooth}
 body{
   font-family:var(--font-sans);
@@ -187,6 +188,94 @@ section{padding:64px 0}
 .footer .contact a:hover{background:var(--primary);color:#fff}
 .footer .foot-note{font-size:13px;color:var(--muted)}
 
+/* ===== Hero 头像 ===== */
+.hero-grid{display:grid;grid-template-columns:1fr;gap:32px;align-items:start}
+.hero-main{min-width:0}
+.hero-side{margin:0 auto;text-align:center}
+.avatar-box{
+  position:relative;width:100%;max-width:140px;aspect-ratio:4/5;
+  margin:0 auto;border-radius:16px;overflow:hidden;
+  background:var(--primary-soft);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+}
+.avatar-box img{width:100%;height:100%;object-fit:cover;display:block}
+.avatar-ph{font-family:var(--font-serif);font-size:52px;color:var(--primary);opacity:.55;line-height:1}
+.avatar-cap{font-size:12.5px;color:var(--muted);margin-top:10px}
+
+/* ===== 照片工具 ===== */
+.pt-grid{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}
+.pt-stage{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:16px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.pt-empty{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:14px;min-height:320px;border:1.5px dashed var(--line);
+  border-radius:12px;color:var(--muted);text-align:center;padding:24px;
+}
+.pt-empty svg{width:42px;height:42px;stroke:var(--primary)}
+.pt-empty p{font-size:14.5px}
+.btn-primary{
+  background:var(--primary);color:#fff;border:none;border-radius:999px;
+  padding:10px 24px;font-size:14.5px;cursor:pointer;transition:background .2s;
+}
+.btn-primary:hover{background:var(--primary-deep)}
+.btn-ghost{
+  background:var(--surface);color:var(--ink-soft);border:1px solid var(--line);
+  border-radius:999px;padding:9px 18px;font-size:14px;cursor:pointer;transition:all .2s;
+}
+.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+.pt-work{display:flex;flex-direction:column;gap:12px}
+.pt-canvas-wrap{
+  position:relative;width:100%;height:min(480px,62vh);
+  background:#171C1A;border-radius:12px;overflow:hidden;touch-action:none;
+}
+#ptCanvas{width:100%;height:100%;display:block}
+.pt-crop{
+  position:absolute;border:1.5px solid #fff;cursor:move;
+  box-shadow:0 0 0 9999px rgba(12,16,14,.5);touch-action:none;
+}
+.pt-crop i{
+  position:absolute;width:16px;height:16px;border:2px solid #fff;
+  background:rgba(255,255,255,.2);border-radius:3px;
+}
+.pt-crop .nw{left:-8px;top:-8px;cursor:nwse-resize}
+.pt-crop .ne{right:-8px;top:-8px;cursor:nesw-resize}
+.pt-crop .sw{left:-8px;bottom:-8px;cursor:nesw-resize}
+.pt-crop .se{right:-8px;bottom:-8px;cursor:nwse-resize}
+.pt-stage-bar{display:flex;flex-wrap:wrap;gap:8px}
+.pt-seg{display:flex;gap:6px;flex-wrap:wrap}
+.pt-seg button{
+  padding:6px 13px;border:1px solid var(--line);background:var(--surface);
+  border-radius:999px;font-size:13px;cursor:pointer;color:var(--ink-soft);transition:all .15s;
+}
+.pt-seg button.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.pt-panel{
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius);padding:20px;
+  display:flex;flex-direction:column;gap:18px;
+}
+.pt-group{display:flex;flex-direction:column;gap:8px}
+.pt-group h4{font-size:13px;font-weight:600;letter-spacing:1px;color:var(--muted)}
+.pt-row{display:flex;align-items:center;gap:10px}
+.pt-row label{font-size:13.5px;color:var(--ink-soft);min-width:52px}
+.pt-row input[type=range]{flex:1;accent-color:var(--primary);min-height:28px}
+.pt-row output{font-size:12.5px;color:var(--muted);min-width:34px;text-align:right;font-variant-numeric:tabular-nums}
+.pt-row input[type=text]{
+  flex:1;min-width:0;padding:8px 12px;border:1px solid var(--line);
+  border-radius:8px;font-size:16px;color:var(--ink);background:var(--surface);
+}
+.pt-row input[type=color]{width:38px;height:32px;border:1px solid var(--line);border-radius:7px;padding:2px;background:var(--surface);cursor:pointer}
+.pt-actions{display:flex;gap:10px;flex-wrap:wrap}
+.pt-note{font-size:12.5px;color:var(--muted);line-height:1.65;border-top:1px dashed var(--line);padding-top:12px}
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(16px);
+  background:var(--ink);color:#fff;font-size:14px;padding:10px 20px;
+  border-radius:999px;opacity:0;pointer-events:none;transition:all .25s;z-index:99;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
 /* ===== 响应式：≥768px ===== */
 @media (min-width:768px){
   .hero-stats{grid-template-columns:repeat(4,1fr)}
@@ -200,6 +289,13 @@ section{padding:64px 0}
   .tl-body{grid-column:3;padding-left:28px}
   .footer-inner{flex-direction:row;align-items:flex-start;justify-content:space-between}
 }
+@media (min-width:900px){
+  .hero-grid{grid-template-columns:minmax(0,1fr) 240px;gap:48px}
+  .hero-side{margin:0;text-align:left}
+  .avatar-box{max-width:240px;border-radius:18px}
+  .avatar-ph{font-size:80px}
+  .pt-grid{grid-template-columns:minmax(0,1.45fr) minmax(280px,.55fr)}
+}
 </style>
 </head>
 <body>
@@ -212,6 +308,7 @@ section{padding:64px 0}
       <a href="#work">成果</a>
       <a href="#timeline">时间线</a>
       <a href="#skills">能力</a>
+      <a href="#photo-tool">照片工具</a>
       <a href="#contact">联系</a>
     </nav>
   </div>
@@ -222,15 +319,26 @@ section{padding:64px 0}
   <!-- ===== Hero ===== -->
   <section class="hero">
     <div class="container">
-      <div class="hero-eyebrow"><span class="dot"></span>奇绩创坛 MiraclePlus · Community Event</div>
-      <h1>陈冉</h1>
-      <p class="hero-sub">社区活动运营 · 大型活动统筹与执行</p>
-      <p class="hero-desc">专注创业社区活动的全流程落地：从项目统筹、物料与预算管理，到供应商对接、现场总控与复盘沉淀。近期负责 F26 创业营开营总负责人、三地联动季度分享中控与全场协调，并推动社区内容与校友运营项目落地。</p>
-      <div class="hero-stats">
-        <div class="stat"><b>50+</b><span>入营项目统筹（F26 开营）</span></div>
-        <div class="stat"><b>240+</b><span>三地联动单场参与人次</span></div>
-        <div class="stat"><b>10+</b><span>工作组拉通与现场协调</span></div>
-        <div class="stat"><b>4+</b><span>大型活动落地执行</span></div>
+      <div class="hero-grid">
+        <div class="hero-main">
+          <div class="hero-eyebrow"><span class="dot"></span>奇绩创坛 MiraclePlus · Community Event</div>
+          <h1>陈冉</h1>
+          <p class="hero-sub">社区活动运营 · 大型活动统筹与执行</p>
+          <p class="hero-desc">专注创业社区活动的全流程落地：从项目统筹、物料与预算管理，到供应商对接、现场总控与复盘沉淀。近期负责 F26 创业营开营总负责人、三地联动季度分享中控与全场协调，并推动社区内容与校友运营项目落地。</p>
+          <div class="hero-stats">
+            <div class="stat"><b>50+</b><span>入营项目统筹（F26 开营）</span></div>
+            <div class="stat"><b>240+</b><span>三地联动单场参与人次</span></div>
+            <div class="stat"><b>10+</b><span>工作组拉通与现场协调</span></div>
+            <div class="stat"><b>4+</b><span>大型活动落地执行</span></div>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="avatar-box">
+            <img id="siteAvatar" alt="陈冉照片" hidden>
+            <div class="avatar-ph" id="avatarPh">陈</div>
+          </div>
+          <p class="avatar-cap">头像可在「照片工具」中上传编辑</p>
+        </div>
       </div>
     </div>
   </section>
@@ -483,6 +591,75 @@ section{padding:64px 0}
     </div>
   </section>
 
+  <!-- ===== 照片工具 ===== -->
+  <section id="photo-tool">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">PHOTO TOOL</div>
+        <h2>照片工具</h2>
+        <p>上传照片进行裁剪、旋转、滤镜与文字编辑，完成后可下载保存，也可一键设为网站头像（头像保存在当前浏览器，仅自己设备可见）。</p>
+      </div>
+      <div class="pt-grid">
+        <div class="pt-stage">
+          <input type="file" id="ptFile" accept="image/*" hidden>
+          <div class="pt-empty" id="ptEmpty">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
+            <p>选择一张照片开始编辑</p>
+            <button class="btn-primary" id="ptPick" type="button">选择照片</button>
+          </div>
+          <div class="pt-work" id="ptWork" hidden>
+            <div class="pt-canvas-wrap" id="ptWrap">
+              <canvas id="ptCanvas"></canvas>
+              <div class="pt-crop" id="ptCrop" hidden>
+                <i class="nw" data-h="nw"></i><i class="ne" data-h="ne"></i>
+                <i class="sw" data-h="sw"></i><i class="se" data-h="se"></i>
+              </div>
+            </div>
+            <div class="pt-stage-bar">
+              <button class="btn-ghost" id="ptRotateL" type="button">左转 90°</button>
+              <button class="btn-ghost" id="ptRotateR" type="button">右转 90°</button>
+              <button class="btn-ghost" id="ptFlipH" type="button">水平翻转</button>
+              <button class="btn-ghost" id="ptFlipV" type="button">垂直翻转</button>
+              <button class="btn-ghost" id="ptChange" type="button">更换照片</button>
+            </div>
+          </div>
+        </div>
+        <aside class="pt-panel">
+          <div class="pt-group">
+            <h4>裁剪比例</h4>
+            <div class="pt-seg" id="ptAspect">
+              <button type="button" data-a="free" class="on">原图</button>
+              <button type="button" data-a="1:1">1:1</button>
+              <button type="button" data-a="4:3">4:3</button>
+              <button type="button" data-a="16:9">16:9</button>
+            </div>
+          </div>
+          <div class="pt-group">
+            <h4>滤镜</h4>
+            <div class="pt-row"><label>亮度</label><input type="range" id="ptBright" min="20" max="200" value="100"><output id="ptBrightOut">100</output></div>
+            <div class="pt-row"><label>对比度</label><input type="range" id="ptContrast" min="20" max="200" value="100"><output id="ptContrastOut">100</output></div>
+            <div class="pt-row"><label>饱和度</label><input type="range" id="ptSaturate" min="0" max="200" value="100"><output id="ptSaturateOut">100</output></div>
+            <div class="pt-row"><label>灰度</label><input type="range" id="ptGray" min="0" max="100" value="0"><output id="ptGrayOut">0</output></div>
+            <div class="pt-row"><label>复古</label><input type="range" id="ptSepia" min="0" max="100" value="0"><output id="ptSepiaOut">0</output></div>
+          </div>
+          <div class="pt-group">
+            <h4>添加文字</h4>
+            <div class="pt-row"><input type="text" id="ptText" maxlength="40" placeholder="输入要叠加的文字"></div>
+            <div class="pt-row"><label>字号</label><input type="range" id="ptTextSize" min="14" max="120" value="36"><output id="ptTextSizeOut">36</output></div>
+            <div class="pt-row"><label>位置</label><input type="range" id="ptTextY" min="2" max="90" value="14"><output id="ptTextYOut">14</output></div>
+            <div class="pt-row"><label>颜色</label><input type="color" id="ptTextColor" value="#ffffff"></div>
+          </div>
+          <div class="pt-actions">
+            <button class="btn-primary" id="ptDownload" type="button">下载图片</button>
+            <button class="btn-ghost" id="ptSetAvatar" type="button">设为网站头像</button>
+            <button class="btn-ghost" id="ptReset" type="button">重置</button>
+          </div>
+          <p class="pt-note">所有编辑均在浏览器本地完成，照片不会上传到任何服务器。头像保存在当前设备浏览器；要让所有访客看到新头像，可把编辑后的图片发送给我，由我更新部署。</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- ===== 页脚 ===== -->
@@ -504,8 +681,322 @@ section{padding:64px 0}
   </div>
 </footer>
 
+<div id="toast" class="toast"></div>
+
 <script>
+/* ===== 照片工具 ===== */
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var state = {
+    img:null, sw:0, sh:0, angle:0, flipH:false, flipV:false,
+    filters:{brightness:100,contrast:100,saturate:100,grayscale:0,sepia:0},
+    text:{content:'',size:36,color:'#ffffff',y:14},
+    aspect:'free', crop:null,
+    disp:{x:0,y:0,w:0,h:0,scale:1}
+  };
+  var src = document.createElement('canvas');
+  var srcCtx = src.getContext('2d');
+  var MAX_SRC = 1600, MAX_OUT = 2000;
+  var wrap = $('ptWrap'), cropEl = $('ptCrop');
+  var drag = null;
+  var toastTimer = null;
+
+  function filterStr(){
+    var f = state.filters;
+    return 'brightness(' + f.brightness + '%) contrast(' + f.contrast + '%) saturate(' + f.saturate + '%) grayscale(' + f.grayscale + '%) sepia(' + f.sepia + '%)';
+  }
+  function currentRatio(){
+    if(state.aspect==='1:1') return 1;
+    if(state.aspect==='4:3') return 4/3;
+    if(state.aspect==='16:9') return 16/9;
+    return 0;
+  }
+  function buildSrc(){
+    var rad = state.angle*Math.PI/180, rotated = (state.angle%180!==0);
+    var w = rotated?state.sh:state.sw, h = rotated?state.sw:state.sh;
+    src.width = w; src.height = h;
+    srcCtx.save();
+    srcCtx.translate(w/2,h/2); srcCtx.rotate(rad);
+    srcCtx.scale(state.flipH?-1:1, state.flipV?-1:1);
+    srcCtx.drawImage(state.img, -state.sw/2, -state.sh/2, state.sw, state.sh);
+    srcCtx.restore();
+  }
+  function drawText(c, cw, ch, baseScale, yPx){
+    var t = state.text;
+    if(!t.content) return;
+    var fs = Math.max(12, Math.round(t.size * baseScale));
+    c.font = '600 ' + fs + 'px "PingFang SC","Microsoft YaHei",sans-serif';
+    c.textAlign = 'center'; c.textBaseline = 'top';
+    c.shadowColor = 'rgba(0,0,0,.55)'; c.shadowBlur = Math.max(2, fs*0.08);
+    c.fillStyle = t.color;
+    c.fillText(t.content, cw/2, yPx);
+    c.shadowBlur = 0; c.shadowColor = 'transparent';
+  }
+  function drawEditor(){
+    if(!state.img) return;
+    buildSrc();
+    var cw = wrap.clientWidth, ch = wrap.clientHeight;
+    var scale = Math.min(cw/src.width, ch/src.height);
+    var dw = src.width*scale, dh = src.height*scale;
+    var dx = (cw-dw)/2, dy = (ch-dh)/2;
+    state.disp = {x:dx,y:dy,w:dw,h:dh,scale:scale};
+    var cv = $('ptCanvas');
+    cv.width = cw; cv.height = ch;
+    var c = cv.getContext('2d');
+    c.clearRect(0,0,cw,ch);
+    c.save();
+    c.filter = filterStr();
+    c.drawImage(src, dx, dy, dw, dh);
+    c.restore();
+    drawText(c, cw, ch, 1, dy + dh*(state.text.y/100));
+    syncCropBox();
+  }
+  function clampCrop(){
+    var d = state.disp, c = state.crop;
+    if(!c) return;
+    if(c.x < d.x){ c.w -= d.x-c.x; c.x = d.x; }
+    if(c.y < d.y){ c.h -= d.y-c.y; c.y = d.y; }
+    if(c.x+c.w > d.x+d.w){ c.w = d.x+d.w-c.x; }
+    if(c.y+c.h > d.y+d.h){ c.h = d.y+d.h-c.y; }
+    if(c.w < 12){ c.w = 12; c.x = Math.min(c.x, d.x+d.w-12); }
+    if(c.h < 12){ c.h = 12; c.y = Math.min(c.y, d.y+d.h-12); }
+  }
+  function syncCropBox(){
+    var d = state.disp, c = state.crop;
+    if(!c || !d.w){ cropEl.hidden = true; return; }
+    clampCrop();
+    cropEl.hidden = false;
+    cropEl.style.left = (c.x-d.x)+'px';
+    cropEl.style.top = (c.y-d.y)+'px';
+    cropEl.style.width = c.w+'px';
+    cropEl.style.height = c.h+'px';
+  }
+  function resetCrop(){
+    var d = state.disp;
+    if(!d.w) return;
+    state.crop = {x:d.x, y:d.y, w:d.w, h:d.h};
+    syncCropBox();
+  }
+  function setAspect(a){
+    state.aspect = a;
+    var d = state.disp, c = state.crop, ratio = currentRatio();
+    if(ratio && c && d.w){
+      var cx = c.x+c.w/2, cy = c.y+c.h/2;
+      var w = Math.min(c.w, d.w), h = w/ratio;
+      if(h > d.h){ h = d.h; w = h*ratio; }
+      c.x = cx-w/2; c.y = cy-h/2; c.w = w; c.h = h;
+      clampCrop();
+    }
+    syncCropBox();
+    var btns = $('ptAspect').querySelectorAll('button');
+    for(var i=0;i<btns.length;i++){ btns[i].classList.toggle('on', btns[i].getAttribute('data-a')===a); }
+  }
+  function rectFromAnchor(ax, ay, px, py){
+    var ratio = currentRatio();
+    var w = px-ax, h = py-ay;
+    if(ratio){
+      if(Math.abs(w) >= Math.abs(h)*ratio){ h = w/ratio; } else { w = h*ratio; }
+    }
+    return {x:Math.min(ax, ax+w), y:Math.min(ay, ay+h), w:Math.abs(w), h:Math.abs(h)};
+  }
+  function pointerPos(e){
+    var r = wrap.getBoundingClientRect();
+    return {x: e.clientX - r.left, y: e.clientY - r.top};
+  }
+  cropEl.addEventListener('pointerdown', function(e){
+    e.preventDefault();
+    var c = state.crop;
+    if(!c) return;
+    var hEl = e.target.closest('i');
+    var mode = hEl ? hEl.getAttribute('data-h') : 'move';
+    var pt = pointerPos(e);
+    var anchor = null;
+    if(mode==='nw') anchor = {x:c.x+c.w, y:c.y+c.h};
+    if(mode==='ne') anchor = {x:c.x, y:c.y+c.h};
+    if(mode==='sw') anchor = {x:c.x+c.w, y:c.y};
+    if(mode==='se') anchor = {x:c.x, y:c.y};
+    drag = {mode:mode, pt:pt, start:{x:c.x,y:c.y,w:c.w,h:c.h}, anchor:anchor};
+    wrap.setPointerCapture(e.pointerId);
+  });
+  wrap.addEventListener('pointermove', function(e){
+    if(!drag) return;
+    var p = pointerPos(e);
+    if(drag.mode==='move'){
+      var dx = p.x-drag.pt.x, dy = p.y-drag.pt.y;
+      state.crop = {x:drag.start.x+dx, y:drag.start.y+dy, w:drag.start.w, h:drag.start.h};
+    } else {
+      state.crop = rectFromAnchor(drag.anchor.x, drag.anchor.y, p.x, p.y);
+    }
+    clampCrop(); syncCropBox();
+  });
+  function endDrag(){ drag = null; }
+  wrap.addEventListener('pointerup', endDrag);
+  wrap.addEventListener('pointercancel', endDrag);
+
+  function getOutput(){
+    var d = state.disp, c = state.crop || {x:d.x,y:d.y,w:d.w,h:d.h};
+    var sx = (c.x-d.x)/d.scale, sy = (c.y-d.y)/d.scale;
+    var sw = c.w/d.scale, sh = c.h/d.scale;
+    var os = Math.min(1, MAX_OUT/Math.max(sw,sh));
+    var out = document.createElement('canvas');
+    out.width = Math.max(1, Math.round(sw*os));
+    out.height = Math.max(1, Math.round(sh*os));
+    var c2 = out.getContext('2d');
+    c2.save();
+    c2.filter = filterStr();
+    c2.drawImage(src, sx, sy, sw, sh, 0, 0, out.width, out.height);
+    c2.restore();
+    drawText(c2, out.width, out.height, out.width/c.w, out.height*(state.text.y/100));
+    return out;
+  }
+  function download(){
+    if(!state.img) return;
+    var out = getOutput();
+    out.toBlob(function(b){
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(b);
+      a.download = '陈冉照片.jpg';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+    }, 'image/jpeg', 0.92);
+  }
+  function setAvatar(){
+    if(!state.img) return;
+    var out = getOutput();
+    var os = Math.min(1, 512/Math.max(out.width, out.height));
+    var av = document.createElement('canvas');
+    av.width = Math.round(out.width*os);
+    av.height = Math.round(out.height*os);
+    av.getContext('2d').drawImage(out, 0, 0, av.width, av.height);
+    localStorage.setItem('cr_site_avatar', av.toDataURL('image/jpeg', 0.9));
+    updateAvatar();
+    toast('已设为网站头像（保存在当前浏览器）');
+  }
+  function updateAvatar(){
+    var img = $('siteAvatar'), ph = $('avatarPh');
+    var data = null;
+    try { data = localStorage.getItem('cr_site_avatar'); } catch(e){}
+    if(data){
+      img.src = data; img.hidden = false; ph.hidden = true;
+    } else {
+      img.hidden = true; ph.hidden = false;
+    }
+  }
+  function toast(msg){
+    var el = $('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ el.classList.remove('show'); }, 2400);
+  }
+  function init(img){
+    state.img = img;
+    state.sw = img.width; state.sh = img.height;
+    state.angle = 0; state.flipH = false; state.flipV = false;
+    state.filters = {brightness:100,contrast:100,saturate:100,grayscale:0,sepia:0};
+    state.text = {content:'',size:36,color:'#ffffff',y:14};
+    state.aspect = 'free'; state.crop = null;
+    $('ptEmpty').hidden = true;
+    $('ptWork').hidden = false;
+    $('ptText').value = '';
+    $('ptTextColor').value = '#ffffff';
+    var sliders = [['ptBright',100,'ptBrightOut'],['ptContrast',100,'ptContrastOut'],['ptSaturate',100,'ptSaturateOut'],['ptGray',0,'ptGrayOut'],['ptSepia',0,'ptSepiaOut'],['ptTextSize',36,'ptTextSizeOut'],['ptTextY',14,'ptTextYOut']];
+    for(var i=0;i<sliders.length;i++){
+      $(sliders[i][0]).value = sliders[i][1];
+      $(sliders[i][2]).textContent = sliders[i][1];
+    }
+    setAspect('free');
+    drawEditor();
+    resetCrop();
+  }
+  function loadFromDataURL(url){
+    var img = new Image();
+    img.onload = function(){ init(img); };
+    img.src = url;
+  }
+
+  $('ptPick').addEventListener('click', function(){ $('ptFile').click(); });
+  $('ptChange').addEventListener('click', function(){ $('ptFile').click(); });
+  $('ptFile').addEventListener('change', function(){
+    var f = this.files && this.files[0];
+    if(!f) return;
+    var reader = new FileReader();
+    reader.onload = function(e){ loadFromDataURL(e.target.result); };
+    reader.readAsDataURL(f);
+    this.value = '';
+  });
+  $('ptRotateL').addEventListener('click', function(){ state.angle = (state.angle-90+360)%360; drawEditor(); });
+  $('ptRotateR').addEventListener('click', function(){ state.angle = (state.angle+90)%360; drawEditor(); });
+  $('ptFlipH').addEventListener('click', function(){ state.flipH = !state.flipH; drawEditor(); });
+  $('ptFlipV').addEventListener('click', function(){ state.flipV = !state.flipV; drawEditor(); });
+  $('ptAspect').addEventListener('click', function(e){
+    var b = e.target.closest('button');
+    if(b) setAspect(b.getAttribute('data-a'));
+  });
+  var sliderMap = [
+    ['ptBright','brightness','ptBrightOut'],
+    ['ptContrast','contrast','ptContrastOut'],
+    ['ptSaturate','saturate','ptSaturateOut'],
+    ['ptGray','grayscale','ptGrayOut'],
+    ['ptSepia','sepia','ptSepiaOut']
+  ];
+  for(var s=0;s<sliderMap.length;s++){
+    (function(id, key, outId){
+      $(id).addEventListener('input', function(){
+        var v = parseInt(this.value, 10);
+        state.filters[key] = v;
+        $(outId).textContent = v;
+        drawEditor();
+      });
+    })(sliderMap[s][0], sliderMap[s][1], sliderMap[s][2]);
+  }
+  $('ptText').addEventListener('input', function(){ state.text.content = this.value; drawEditor(); });
+  $('ptTextSize').addEventListener('input', function(){ state.text.size = parseInt(this.value,10); $('ptTextSizeOut').textContent = this.value; drawEditor(); });
+  $('ptTextY').addEventListener('input', function(){ state.text.y = parseInt(this.value,10); $('ptTextYOut').textContent = this.value; drawEditor(); });
+  $('ptTextColor').addEventListener('input', function(){ state.text.color = this.value; drawEditor(); });
+  $('ptDownload').addEventListener('click', download);
+  $('ptSetAvatar').addEventListener('click', setAvatar);
+  $('ptReset').addEventListener('click', function(){
+    if(!state.img) return;
+    state.angle = 0; state.flipH = false; state.flipV = false;
+    state.filters = {brightness:100,contrast:100,saturate:100,grayscale:0,sepia:0};
+    state.text = {content:'',size:36,color:'#ffffff',y:14};
+    state.aspect = 'free';
+    $('ptText').value = '';
+    $('ptTextColor').value = '#ffffff';
+    $('ptBright').value=100;$('ptBrightOut').textContent='100';
+    $('ptContrast').value=100;$('ptContrastOut').textContent='100';
+    $('ptSaturate').value=100;$('ptSaturateOut').textContent='100';
+    $('ptGray').value=0;$('ptGrayOut').textContent='0';
+    $('ptSepia').value=0;$('ptSepiaOut').textContent='0';
+    $('ptTextSize').value=36;$('ptTextSizeOut').textContent='36';
+    $('ptTextY').value=14;$('ptTextYOut').textContent='14';
+    setAspect('free');
+    drawEditor();
+    resetCrop();
+  });
+
+  var resizeTimer = null;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function(){ drawEditor(); }, 150);
+  });
+
+  /* 供自动化测试使用 */
+  window.PhotoTool = {
+    loadFromDataURL: loadFromDataURL,
+    getState: function(){ return {loaded: !!state.img, sw: src.width, sh: src.height}; },
+    render: drawEditor,
+    getOutputCanvas: getOutput,
+    setAvatar: setAvatar,
+    rotateR: function(){ state.angle = (state.angle+90)%360; drawEditor(); },
+    setText: function(t){ state.text.content = t; drawEditor(); }
+  };
+
+  updateAvatar();
   document.getElementById('year').textContent = new Date().getFullYear();
+})();
 </script>
 
 </body>
